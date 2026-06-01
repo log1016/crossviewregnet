@@ -83,6 +83,7 @@ class CrossViewRegNet(nn.Module):
             )
         )
 
+        self.feature_pos_embed = nn.Parameter(torch.zeros(1, n_views + 1, z_dim))
         self.cls_token = nn.Parameter(torch.zeros(1, 1, z_dim))
         self.classifier = nn.Sequential(
             nn.LayerNorm(z_dim),
@@ -105,6 +106,7 @@ class CrossViewRegNet(nn.Module):
         height_features = self.height_pathway(heights).unsqueeze(1)
 
         feature_sequence = torch.cat((image_features, height_features), dim=1)
+        feature_sequence = feature_sequence + self.feature_pos_embed
         cls_tokens = self.cls_token.expand(batch_size, -1, -1)
         feature_sequence = torch.cat((cls_tokens, feature_sequence), dim=1)
 
