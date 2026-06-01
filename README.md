@@ -131,4 +131,8 @@ treeID,predicted_species
 
 ## Data and Checkpoints
 
-The Ts3D dataset, trained checkpoints, and paper citation information will be linked here after public release.
+The public coordinate-normalized Ts3D dataset is available from the GitHub release page:
+
+- [Ts3D public coordinate-normalized data](https://github.com/log1016/crossviewregnet/releases/tag/ts3d-public-v1)
+
+The released LAS files remove absolute geographic/projected coordinates by centering each individual tree in local coordinates while preserving its 3D structure and metric height.
